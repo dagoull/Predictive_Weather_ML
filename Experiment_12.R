@@ -1,5 +1,3 @@
-## Librerias
-library(caret)
 #library(purrr)
 library(corrplot)
 library(mlbench)
@@ -11,18 +9,7 @@ library(dplyr)
 #library(skimr)
 library(gbm)
 library(tibble)
-
-
-#
-# library(readr)
-#xx_train <- read_csv("C:/Users/Dago/Dropbox/Proyecto_Ricardo/Data/xx.train.csv")
-
-#library(radiant.data)
-# https://machinelearningmastery.com/linear-discriminant-analysis-for-machine-learning/
-# https://sebastianraschka.com/Articles/2014_python_lda.html
-#
-# https://rpubs.com/Joaquin_AR/226291
-#
+library(readr)
 
 library(doParallel) #Paralelismo...
 parallel::detectCores()
@@ -31,46 +18,10 @@ cl <- makePSOCKcluster(2)
 
 registerDoParallel(cl) 
 
-## All subsequent models are then run in parallel
-## Copia xx.train
-#copia_xx.train <- xx.train 
-
-
-## Balanceo de las clases
-
-#https://rpubs.com/Joaquin_AR/383283
-#
-## https://www.analyticsvidhya.com/blog/2016/12/practical-guide-to-implement-machine-learning-with-caret-package-in-r-with-practice-problem/
-#
-#
-# http://www.rebeccabarter.com/blog/2017-11-17-caret_tutorial/
-#
-#
-
-
-# https://machinelearningmastery.com/how-to-evaluate-machine-learning-algorithms/
-# https://machinelearningmastery.com/how-to-choose-the-right-test-options-when-evaluating-machine-learning-algorithms/
-# https://machinelearningmastery.com/randomness-in-machine-learning/
-# https://machinelearningmastery.com/how-to-estimate-model-accuracy-in-r-using-the-caret-package/
-
-##
-#
-#
-# https://www.machinelearningplus.com/machine-learning/caret-package/
-#
-#https://www.machinelearningplus.com/machine-learning/evaluation-metrics-classification-models-r/
-#
-#https://www.machinelearningplus.com/machine-learning/logistic-regression-tutorial-examples-r/
-#
-# Logistic Regression - A Complete Tutorial With Examples in R
-#
-#
-# Save And Finalize Your Machine Learning Model in R
-# https://machinelearningmastery.com/finalize-machine-learning-models-in-r/
-
+xx_train <- read_csv("xx.train.csv")
 
 #
-# Configuración
+# Configuracion
 #
 boot.ctrl = trainControl ( method = "cv" , number = 5, sampling = "up", returnResamp = "final", classProbs = TRUE )
 
@@ -95,7 +46,7 @@ lda.fit = train ( Class ~ ., data = xx.train,
                   trControl = boot.ctrl )
 lda.fit
 
-# Compute the confusion matrix
+
 # Step 2: Predict on testData and Compute the confusion matrix
 predicted2 <- predict(lda.fit, xx.test)
 lda.fit_pred <-confusionMatrix(reference = xx.test$Class, data = predicted2, mode='everything', positive='dry')
@@ -195,14 +146,6 @@ predicted2 <- predict(svmPoly, xx.test)
 
 svmPoly_pred <-  confusionMatrix(reference = xx.test$Class, data = predicted2, mode='everything', positive='dry')
 
-
-
-# Metaalgoritmos
-#
-#arrange(gbm_model$results, RMSE) %>% head
-#
-#
-# http://www.zevross.com/blog/2017/09/19/predictive-modeling-and-machine-learning-in-r-with-the-caret-package/
 #----------------------------------------------------------------------------------------------
 # Stochastic Gradient Boosting
 #
@@ -275,13 +218,6 @@ importance <- varImp(rf.fit, scale=FALSE)
 predicciones <- predict(rf.fit, xx.test)
 
 rf.fit_pred <-  confusionMatrix(reference = xx.test$Class, data = predicciones, mode='everything', positive='dry')
-
-
-#
-#
-## Pre-processing #https://rpubs.com/Isaac/caret_reg
-#-----------------------------------------------------------------------------------------------------
-
 
 #----------------------------------------------------------------------------------------------------------------
 #  xgbDART  
@@ -397,7 +333,7 @@ summary(models_compare)
 models_compare$values %>% head(10)
 
 # Se trasforma el dataframe devuelto por resamples() para separar el nombre del 
-# modelo y las m�tricas en columnas distintas. 
+# modelo y las métricas en columnas distintas. 
 metricas_resamples <- models_compare$values %>%
   gather(key = "modelo", value = "valor", -Resample) %>%
   separate(col = "modelo", into = c("modelo", "metrica"), 
@@ -421,7 +357,7 @@ friedman.test(y = matriz_metricas)
 
 #--------------------------------------------------------------------------
 
-# Comparaciones m�ltiples con un test suma de rangos de Wilcoxon 
+# Comparaciones múltiples con un test suma de rangos de Wilcoxon 
 # ============================================================================== 
 metricas_accuracy <- metricas_resamples %>% filter(metrica == "Accuracy") 
 comparaciones <- pairwise.wilcox.test(x = metricas_accuracy$valor, 
@@ -595,7 +531,6 @@ confusionMatrix(reference = xx.test$Class, data = stack_predicteds, mode='everyt
 
 # Predict
 #
-# https://rpubs.com/zxs107020/370699
 #
 
 #stack_val_preds <- data.frame(predict(stack, val, type = "prob")) data.frame(predict(stack.glm, newdata=xx.test))
@@ -609,10 +544,6 @@ library( randomForest)
 MDSplot(rf.fit, xx.train$Class)
 
 ## When you are done:
-proc.time()-t # Detiene el cronómetro
+proc.time()-t # Detiene el cronÃ³metro
 stopCluster(cl)
-
-
-# Bibliografi
-# https://machinelearningmastery.com/spot-check-machine-learning-algorithms-in-r/
 
