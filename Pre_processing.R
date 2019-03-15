@@ -50,7 +50,7 @@ dim(xx.train)
 
 #
 #
-## Pre-processing #https://rpubs.com/Isaac/caret_reg
+##
 #-----------------------------------------------------------------------------------------------------
 ## Control de la Tecnica de Remuestreo: 10-fold CV
 boot.ctrl = trainControl ( method = "cv" , number = 10, classProbs = TRUE )
@@ -73,9 +73,6 @@ plot(rf.fit,col = "red", main= paste("Random Forest, Accuracy:", round(max(rf.fi
 
 importance <- varImp(rf.fit, scale=FALSE)
 plot(importance, main= paste("Random Forest, Accuracy:", round(max(rf.fit$results$Accuracy),2)) )
-
-
-
 
 #
 #
@@ -622,15 +619,9 @@ plot(mlpSGD.fit, main= paste("Multilayer Perceptron Network by Stochastic Gradie
 
 plot(importance, main= paste("Multilayer Perceptron Network by Stochastic Gradient Descent, with multiple layers, Accuracy:", round(max(mlpSGD.fit$results$Accuracy),2)) )
 
-
 #
 #-----------------------------------------------------------------------------------------------------------------
 # Control de la Tecnica de Remuestreo: 10-fold CV
-
-
-#-----------------------------------------------------------------------------------------------------------------
-#https://rpubs.com/Isaac/caret_reg
-#
 
 print(paste("svmLinear2", round(max(svmLinear2$results$Accuracy),3)))
 print(paste("svmLinear", round(max(svmLinear$results$Accuracy),3)))
