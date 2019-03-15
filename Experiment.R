@@ -1,4 +1,3 @@
-#library(purrr)
 library(corrplot)
 library(mlbench)
 library(caretEnsemble)
@@ -192,7 +191,7 @@ model_gbm_pred <- confusionMatrix(predicciones, xx.test$Class)
 
 #
 #
-## Pre-processing #https://rpubs.com/Isaac/caret_reg
+## 
 #-----------------------------------------------------------------------------------------------------
 ## Control de la Tecnica de Remuestreo: 10-fold CV
 set.seed(123)
