@@ -1,7 +1,3 @@
-# *** Se define el directorio de trabajo
-#setwd("C:/Users/Josema/Downloads/_Dago-Estaciones")
-# *** Se mira si las distintas librerías están instaladas,
-#si no es así se instalan antes de cargarlas
 if (!"sp" %in% installed.packages()) install.packages("sp")
 library(sp)
 if (!"RColorBrewer" %in% installed.packages()) install.packages("RColorBrewer")
