@@ -16,8 +16,10 @@ R, version 3.4 or later. Package: caret, version: 6.0-80, package caretEnsemble,
 ```
 #### Dataset
 ```
-The dataset used in this paper is available for download from [https://data.mendeley.com/datasets/srwzh55hrz/1] (https://data.mendeley.com/datasets/srwzh55hrz/1)
+The dataset used in this paper is available for download from [ https://data.mendeley.com/datasets/srwzh55hrz/1 ] (https://data.mendeley.com/datasets/srwzh55hrz/1)
 ```
+[ https://data.mendeley.com/datasets/srwzh55hrz/1 ] (https://data.mendeley.com/datasets/srwzh55hrz/1)
+
 ## References
 * Kuhn, M. (2008). Caret package. Journal of Statistical Software, 28(5), 1-26. 
 * Kuhn, M., & Johnson, K. (2013). Applied predictive modeling (Vol. 26). New York: Springer.
