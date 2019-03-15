@@ -22,3 +22,5 @@ The dataset used in this paper is available for download from [https://data.mend
 * Kuhn, M. (2008). Caret package. Journal of Statistical Software, 28(5), 1-26. 
 * Kuhn, M., & Johnson, K. (2013). Applied predictive modeling (Vol. 26). New York: Springer.
 * Kuhn, M., & Johnson, K. (2013). A Short Tour of the Predictive Modeling Process. In Applied predictive modeling (pp. 19-26). Springer, New York, NY.
+## License
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details
