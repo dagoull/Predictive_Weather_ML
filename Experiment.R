@@ -420,9 +420,9 @@ predicciones %>% head()
 # Draw box plots to compare models
 scales <- list(x=list(relation="free"), y=list(relation="free"))
 bwplot(models_compare,
-       aspect = "fill",
-       main = "Yearly Sunspots",
-       ylab = "Barley Yield (bushels/acre)",
+       aspect = "",
+       main = "",
+       ylab = "",
        panel = lattice.getOption("panel.bwplot"),
        scales=scales)
 
@@ -531,9 +531,6 @@ confusionMatrix(reference = xx.test$Class, data = stack_predicteds, mode='everyt
 # Predict
 #
 #
-
-#stack_val_preds <- data.frame(predict(stack, val, type = "prob")) data.frame(predict(stack.glm, newdata=xx.test))
-#stack_test_preds <- data.frame(predict(stack, test, type = "prob"))
 
 
 stack_val_preds <- data.frame(predict(stack.glm, xx.test, type = "prob"))
